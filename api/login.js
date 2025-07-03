@@ -1,4 +1,4 @@
-const { GoogleSpreadsheet } = require('google-spreadsheet');
+         const { GoogleSpreadsheet } = require('google-spreadsheet');
     
          module.exports = async (req, res) => {
            // Allow requests from any origin for development purposes.
@@ -6,7 +6,7 @@ const { GoogleSpreadsheet } = require('google-spreadsheet');
            res.setHeader('Access-Control-Allow-Origin', '*');
            res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
            res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-   
+    
           // Handle preflight requests (sent by browsers to check CORS settings)
           if (req.method === 'OPTIONS') {
             return res.status(204).end();
@@ -28,7 +28,14 @@ const { GoogleSpreadsheet } = require('google-spreadsheet');
           try {
             // Initialize the Google Sheet
             const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID);
-            console.log('Doc object:', doc); // <--- 新增的診斷行
+           console.log('Doc object:', doc);
+   
+            // --- DEBUGGING: Log environment variables ---
+            console.log('GOOGLE_SHEET_ID:', process.env.GOOGLE_SHEET_ID ? 'Set' : 'Not Set');
+            console.log('GOOGLE_SERVICE_ACCOUNT_EMAIL:', process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL ? 'Set' : 'Not Set');
+            console.log('GOOGLE_PRIVATE_KEY (first 10 chars):', process.env.GOOGLE_PRIVATE_KEY ? process.env.GOOGLE_PRIVATE_KEY.
+      substring(0, 10) : 'Not Set');
+            // --- END DEBUGGING ---
    
             // Authenticate with the service account
             await doc.useServiceAccountAuth({
