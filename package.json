@@ -1,0 +1,7 @@
+{
+  "name": "plasmic-google-sheets-api",
+  "version": "1.0.0",
+  "dependencies": {
+    "google-spreadsheet": "^4.1.1"
+  }
+}
