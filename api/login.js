@@ -6,7 +6,7 @@ const { GoogleSpreadsheet } = require('google-spreadsheet');
            res.setHeader('Access-Control-Allow-Origin', '*');
            res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
            res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    
+   
           // Handle preflight requests (sent by browsers to check CORS settings)
           if (req.method === 'OPTIONS') {
             return res.status(204).end();
@@ -28,6 +28,7 @@ const { GoogleSpreadsheet } = require('google-spreadsheet');
           try {
             // Initialize the Google Sheet
             const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID);
+            console.log('Doc object:', doc); // <--- 新增的診斷行
    
             // Authenticate with the service account
             await doc.useServiceAccountAuth({
